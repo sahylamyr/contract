@@ -29,4 +29,13 @@ class StoreContractRequest extends FormRequest
             'status' => ['nullable', 'boolean'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Boş olmaz.',
+            'company.required' => 'Şirkət seçin.',
+            'category_id.required' => 'Kateqoriya seçin.',
+            'date.required' => 'Tarix seçin.',
+        ];
+    }
 }

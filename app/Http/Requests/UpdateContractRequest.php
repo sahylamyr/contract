@@ -30,4 +30,13 @@ class UpdateContractRequest extends FormRequest
             // 'file' => ['nullable', 'mimes:pdf,doc,docx,txt,png,jpg,jpeg']
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Boş olmaz.',
+            'company.required' => 'Şirkət seçin.',
+            'category_id.required' => 'Kateqoriya seçin.',
+            'date.required' => 'Tarix seçin.',
+        ];
+    }
 }

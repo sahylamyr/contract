@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateContractRequest;
 use App\Models\Category;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File as F;
 
 class ContractController extends Controller
 {
@@ -19,6 +20,7 @@ class ContractController extends Controller
 
         $contracts = Contract::select('id', 'status', 'name', 'company', 'date', 'category_id')
             ->with(['category', 'contract_file'])
+            ->orderBy('id', 'DESC')
             ->get();
 
         return view('admin.contracts.index', compact('contracts'));
@@ -54,7 +56,8 @@ class ContractController extends Controller
 
 
             $newName = time() . '-file.' . $file->getClientOriginalExtension();
-            $path = $file->move(public_path('files'), $newName);
+            // $path = $file->move(public_path('files'), $newName);
+            F::put(public_path('files/' . $newName), file_get_contents($file));
 
 
             $contract->contract_file()->create([

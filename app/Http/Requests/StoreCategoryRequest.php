@@ -26,4 +26,13 @@ class StoreCategoryRequest extends FormRequest
             'slug' => ['required', 'min:3', 'unique:categories,slug'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Kateqoriya adı boş olmaz.',
+            'name.min' => 'Minimum 3 hərf olmalıdır.',
+            'slug.min' => 'Minimum 3 hərf olmalıdır.',
+            'slug.required' => 'Slug (url) boş olmaz.',
+        ];
+    }
 }
